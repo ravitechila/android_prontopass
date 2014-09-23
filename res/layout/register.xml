@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <ScrollView
+        android:id="@+id/PersonInfoScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/tx_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_student"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/student_name"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_qualification"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_book"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/qualification"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_emailadd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_mobnumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_mobile"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/mobnumber"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_dob"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_birthday"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/student_dob"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_address"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/address"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_password"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_private"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <EditText
+                    android:id="@+id/tx_repassword"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/ic_private"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/repassword"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:padding="8dp"
+                    android:textColor="@color/login_text"
+                    android:textColorHint="#cccccc" />
+
+                <Button
+                    android:id="@+id/Register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button"
+                    android:padding="10dp"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
