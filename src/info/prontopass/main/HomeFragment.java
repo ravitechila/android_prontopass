@@ -1,5 +1,7 @@
 package info.prontopass.main;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,8 +33,10 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class HomeFragment extends Fragment {
-	String main_Subject;
-	String str[];
+
+	ArrayList<String> str;
+	ArrayList<String> sub;
+
 	private String request_url;
 	private String urlJsonObj = "http://phbjharkhand.in/Prontopass-Webservices/User_Login.php?";
 	private AlertDialog alertDialog;
@@ -40,13 +44,20 @@ public class HomeFragment extends Fragment {
 	private ProgressDialog pDialog;
 	private static String TAG = LoginActivity.class.getSimpleName();
 	private SessionPrefs sessionObj;
-
+	String subName;
 	int position;
 
-	public HomeFragment(String string, int position) {
-		this.main_Subject = string;
-		this.position = position;
+	public HomeFragment(int position2, String subject) {
+		// TODO Auto-generated constructor stub
+		this.position = position2;
+		this.subName = subject;
 	}
+
+	/*
+	 * public HomeFragment(int position) {
+	 * 
+	 * this.position = position; }
+	 */
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,73 +70,35 @@ public class HomeFragment extends Fragment {
 				false);
 		ListView lv = (ListView) rootView.findViewById(R.id.list);
 
-		switch (position) {
-		case 0:
-			str = getResources().getStringArray(R.array.maths_subtopics);
-			break;
-		case 1:
-			str = getResources().getStringArray(R.array.science_subtopics);
-			break;
-		case 2:
-			str = getResources().getStringArray(R.array.english_subtopics);
-			break;
-		case 3:
-			str = getResources().getStringArray(R.array.aptitude_subtopics);
-			break;
-		case 4:
-			str = getResources().getStringArray(R.array.logical_subtopics);
-			break;
-		case 5:
-			str = getResources().getStringArray(R.array.biology_subtopics);
-			break;
+		try {
 
-		default:
-			break;
+			str = ProntoPassMainActivity.arr_of_subList.get(position);
+
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					getActivity(), android.R.layout.select_dialog_item, str);
+
+			lv.setAdapter(adapter);
+		} catch (Exception e) {
+
 		}
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.select_dialog_item, str);
-
-		lv.setAdapter(adapter);
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
-				String tempmain = main_Subject;
-				int tempsub_pos = pos;
 				Intent nextActivity = new Intent(getActivity(),
 						QuestionActivity.class);
 
-				switch (pos) {
+				getActivity().overridePendingTransition(R.anim.lefttoright,
+						R.anim.righttoleft);
 
-				case 0:
-					getActivity().overridePendingTransition(R.anim.lefttoright,
-							R.anim.righttoleft);
-					nextActivity.putExtra("subject_name", "" + tempmain);
-					nextActivity.putExtra("subtopic_name", "" + str[pos]);
-					startActivity(nextActivity);
-					break;
-
-				case 1:
-					getActivity().overridePendingTransition(R.anim.lefttoright,
-							R.anim.righttoleft);
-					nextActivity.putExtra("subject_name", "" + tempmain);
-					nextActivity.putExtra("subtopic_name", "" + str[pos]);
-					startActivity(nextActivity);
-					break;
-				case 2:
-					getActivity().overridePendingTransition(R.anim.lefttoright,
-							R.anim.righttoleft);
-					nextActivity.putExtra("subject_name", "" + tempmain);
-					nextActivity.putExtra("subtopic_name", "" + str[pos]);
-					startActivity(nextActivity);
-					break;
-
-				default:
-					break;
-				}
+				nextActivity.putExtra("subject_name", "" + subName);
+				nextActivity.putExtra("subtopic_name", "" + str.get(pos));
+				Toast.makeText(getActivity(),
+						"1 :" + subName + "\n2 :" + str.get(pos),
+						Toast.LENGTH_LONG).show();
+				startActivity(nextActivity);
 
 			}
 		});

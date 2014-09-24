@@ -97,8 +97,8 @@ public class LoginActivity extends Activity {
 					@Override
 					public void onResponse(JSONObject response) {
 						Log.d(TAG, response.toString());
-						Toast.makeText(getApplicationContext(),
-								"" + response.toString(), 3000).show();
+//						Toast.makeText(getApplicationContext(),
+//								"" + response.toString(), 3000).show();
 
 						try {
 							// Parsing json object response

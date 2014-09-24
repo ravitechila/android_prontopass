@@ -71,7 +71,6 @@ public class QuestionActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				radioID = radioGroup.getCheckedRadioButtonId();
 
 				if ("NEXT".equals(btn_Submit.getText().toString())) {
@@ -479,7 +478,7 @@ public class QuestionActivity extends Activity {
 		alertDialog = new AlertDialog.Builder(QuestionActivity.this).create();
 
 		pDialog = new ProgressDialog(this);
-		pDialog.setMessage("Please wait...");
+		pDialog.setMessage("Loading questions...");
 		pDialog.setCancelable(false);
 		alertDialog = new AlertDialog.Builder(QuestionActivity.this).create();
 

@@ -172,7 +172,7 @@ public class RegistrationActivity extends Activity {
 				.create();
 
 		pDialog = new ProgressDialog(this);
-		pDialog.setMessage("Please wait...");
+		pDialog.setMessage("Submitting results...");
 		pDialog.setCancelable(false);
 
 		alertDialog = new AlertDialog.Builder(RegistrationActivity.this)

@@ -22,6 +22,11 @@ public class NavDrawerItem {
 		this.count = count;
 	}
 	
+	public NavDrawerItem(String jSONsubjectName) {
+		// TODO Auto-generated constructor stub
+		this.title=jSONsubjectName;
+	}
+
 	public String getTitle(){
 		return this.title;
 	}

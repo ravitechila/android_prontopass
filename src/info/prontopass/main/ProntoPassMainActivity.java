@@ -32,7 +32,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -46,6 +51,8 @@ public class ProntoPassMainActivity extends Activity {
 
 	private AlertDialog alertDialog;
 	private ProgressDialog pDialog;
+
+	public static ArrayList<ArrayList<String>> arr_of_subList;
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -67,7 +74,9 @@ public class ProntoPassMainActivity extends Activity {
 	private NavDrawerListAdapter adapter;
 	private String StudentName, StudentEmail;
 	private TextView stud_name, stud_email;
-	
+	private Animation animFadein;
+	private LinearLayout logout;
+
 	private String JSONsubjectName, subjectID, sub_subjectName;
 
 	@SuppressLint("NewApi")
@@ -76,17 +85,20 @@ public class ProntoPassMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.navigation_main);
 
-		pDialog = new ProgressDialog(this);
-
-		login_click();
 		mTitle = mDrawerTitle = getTitle();
 		sessionObj = new SessionPrefs(this);
+
+		pDialog = new ProgressDialog(this);
+		pDialog.setMessage("Importing Subjects...");
+		pDialog.setCancelable(false);
 
 		StudentName = sessionObj.getPreference("student_NAME");
 		StudentEmail = sessionObj.getPreference("student_EMAIL");
 
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
+		arr_of_subList = new ArrayList<ArrayList<String>>();
 
 		// nav drawer icons from resources
 		navMenuIcons = getResources()
@@ -96,14 +108,27 @@ public class ProntoPassMainActivity extends Activity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.layoutDrawer);
 		mDrawerList = (ListView) findViewById(R.id.listDrawer);
 		mRelativeDrawer = (RelativeLayout) findViewById(R.id.relativeDrawer);
+		logout = (LinearLayout) findViewById(R.id.logout);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 		stud_name = (TextView) findViewById(R.id.txt_user_name_drawer);
 		stud_email = (TextView) findViewById(R.id.txt_user_email_drawer);
 		stud_name.setText("" + StudentName);
 		stud_email.setText("" + StudentEmail);
 
-		
-		
+		logout.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				sessionObj.clearAllPreferences();
+				Intent logout = new Intent(ProntoPassMainActivity.this,
+						AskViewActivity.class);
+				startActivity(logout);
+				ProntoPassMainActivity.this.finish();
+			}
+		});
+		login_click();
 		// adding nav drawer items to array
 		// Home
 		// navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons
@@ -196,8 +221,6 @@ public class ProntoPassMainActivity extends Activity {
 		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
 				urlJsonObj, null, new Response.Listener<JSONObject>() {
 
-					
-
 					@Override
 					public void onResponse(JSONObject response) {
 						Log.d(TAG, response.toString());
@@ -223,30 +246,33 @@ public class ProntoPassMainActivity extends Activity {
 									JSONObject ob = subList.getJSONObject(i);
 
 									subjectID = ob.getString("subID");
-									JSONsubjectName = ob.getString("subjectName");
-
+									JSONsubjectName = ob
+											.getString("subjectName");
 									mainSubject_arr.add(JSONsubjectName);
 									NavDrawerItem item = new NavDrawerItem(
-											JSONsubjectName, navMenuIcons.getResourceId(1, -1);
+											JSONsubjectName);
 									navDrawerItems.add(item);
-									
-								
+
 								}
 
 								for (int i = 0; i < mainSubject_arr.size(); i++) {
 									JSONArray arr = obj
 											.getJSONArray(mainSubject_arr
 													.get(i));
+									ArrayList<String> arr_sub_subject = new ArrayList<String>();
+
 									for (int j = 0; j < arr.length(); j++) {
 										JSONObject ob_of_sub_list = arr
 												.getJSONObject(j);
+										arr_sub_subject.add(ob_of_sub_list
+												.getString("SubName"));
 										Log.d("Sub Subject List = ",
 												""
 														+ ob_of_sub_list
 																.getString("SubName"));
 
 									}
-
+									arr_of_subList.add(arr_sub_subject);
 								}
 
 								adapter.notifyDataSetChanged();
@@ -290,15 +316,14 @@ public class ProntoPassMainActivity extends Activity {
 	 * */
 	private class SlideMenuClickListener implements
 			ListView.OnItemClickListener {
+
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			// display view for selected nav drawer item
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-			mDrawerLayout.closeDrawer(mRelativeDrawer);
+			displayView(position);
 		}
+
 	}
 
 	@Override
@@ -339,35 +364,12 @@ public class ProntoPassMainActivity extends Activity {
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 		Fragment fragment = null;
-		switch (position) {
-		case 0:
-			fragment = new HomeFragment("maths", 0);
-
-			break;
-		case 1:
-			fragment = new HomeFragment("science", 1);
-			break;
-		case 2:
-			fragment = new HomeFragment("english", 2);
-			break;
-		case 3:
-			fragment = new HomeFragment("aptitude", 3);
-			break;
-		case 4:
-			fragment = new HomeFragment("logical", 4);
-			break;
-		case 5:
-			fragment = new HomeFragment("biology", 5);
-			break;
-		case 6:
-			sessionObj.clearAllPreferences();
-			Intent logout = new Intent(ProntoPassMainActivity.this,
-					AskViewActivity.class);
-			startActivity(logout);
-			ProntoPassMainActivity.this.finish();
-			break;
-		default:
-			break;
+		try {
+			fragment = new HomeFragment(position, navDrawerItems.get(position)
+					.getTitle());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		if (fragment != null) {
@@ -376,6 +378,10 @@ public class ProntoPassMainActivity extends Activity {
 					.replace(R.id.content_frame, fragment).commit();
 
 			// update selected item and title, then close the drawer
+			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setSelection(position);
+			setTitle(navMenuTitles[position]);
+			mDrawerLayout.closeDrawer(mRelativeDrawer);
 
 		} else {
 			// error in creating fragment

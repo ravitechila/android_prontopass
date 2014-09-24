@@ -48,41 +48,5 @@
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
 
-    <string-array name="maths_subtopics">
-        <item>M1</item>
-        <item>M2</item>
-        <item>M3</item>
-        
-    </string-array>
-    <string-array name="science_subtopics">
-        <item>S1</item>
-        <item>S2</item>
-        <item>S3</item>
-        
-    </string-array>
-    <string-array name="english_subtopics">
-        <item>E1</item>
-        <item>E2</item>
-        <item>E3</item>
-        
-    </string-array>
-    <string-array name="aptitude_subtopics">
-        <item>A1</item>
-        <item>A2</item>
-        <item>A3</item>
-        
-    </string-array>
-    <string-array name="logical_subtopics">
-        <item>L1</item>
-        <item>L2</item>
-        <item>L3</item>
-       
-    </string-array>
-    <string-array name="biology_subtopics">
-        <item>B1</item>
-        <item>B2</item>
-        <item>B3</item>
-       
-    </string-array>
 
 </resources>
