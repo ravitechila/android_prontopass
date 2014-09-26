@@ -1,0 +1,11 @@
+[25-Sep-2014 11:06:48 Etc/GMT] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Add-more-records.php on line 56
+[25-Sep-2014 12:58:29 Etc/GMT] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php:9) in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 10
+[25-Sep-2014 12:58:29 Etc/GMT] PHP Warning:  session_destroy() expects exactly 0 parameters, 1 given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 17
+[25-Sep-2014 12:58:29 Etc/GMT] PHP Warning:  session_destroy() expects exactly 0 parameters, 1 given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 18
+[25-Sep-2014 13:18:32 Etc/GMT] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php:9) in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 10
+[25-Sep-2014 13:18:32 Etc/GMT] PHP Warning:  session_destroy() expects exactly 0 parameters, 1 given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 17
+[25-Sep-2014 13:18:32 Etc/GMT] PHP Warning:  session_destroy() expects exactly 0 parameters, 1 given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 18
+[25-Sep-2014 13:18:49 Etc/GMT] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php:9) in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 10
+[25-Sep-2014 13:18:49 Etc/GMT] PHP Warning:  session_destroy() expects exactly 0 parameters, 1 given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 17
+[25-Sep-2014 13:18:49 Etc/GMT] PHP Warning:  session_destroy() expects exactly 0 parameters, 1 given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Logout.php on line 18
+[26-Sep-2014 07:46:24 Etc/GMT] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/phbjhqjx/public_html/Prontopass-Adminpanel/Edit-information.php on line 20
